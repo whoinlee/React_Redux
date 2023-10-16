@@ -13,7 +13,7 @@ npm install @reduxjs/toolkit react-redux
 
 #### Setup Store
 
-- create store.js
+- store/index.js
 
 ```js
 import { configureStore } from '@reduxjs/toolkit';
@@ -32,7 +32,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import store and provider
 import { store } from './store';
 import { Provider } from 'react-redux';
 
@@ -48,9 +47,7 @@ ReactDOM.render(
 
 #### Setup Cart Slice
 
-- application feature
-- create features folder/cart
-- create cartSlice.js
+- features/cartSlice.js
 
 ```js
 import { createSlice } from '@reduxjs/toolkit';
@@ -72,11 +69,11 @@ console.log(cartSlice);
 export default cartSlice.reducer;
 ```
 
-- store.js
+- store/index.js
 
 ```js
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './features/cart/cartSlice';
+import cartReducer from '../features/cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -85,16 +82,12 @@ export const store = configureStore({
 });
 ```
 
-#### Redux DevTools
-
-- extension
-
 #### Access store value
 
-- create components/Navbar.js
+- components/Navbar.jsx
 
 ```js
-import { CartIcon } from '../icons';
+import { CartIcon } from '../data/icons';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
@@ -130,10 +123,10 @@ nav svg {
 
 #### Setup Cart
 
-- cartSlice.js
+- features/cartSlice.js
 
 ```js
-import cartItems from '../../cartItems';
+import cartItems from '../data/cartItems';
 
 const initialState = {
   cartItems: cartItems,
@@ -141,92 +134,6 @@ const initialState = {
   total: 0,
   isLoading: true,
 };
-```
-
-- create CartContainer.js and CartItem.js
-- CartContainer.js
-
-```js
-import React from 'react';
-import CartItem from './CartItem';
-import { useSelector } from 'react-redux';
-
-const CartContainer = () => {
-  const { cartItems, total, amount } = useSelector((state) => state.cart);
-
-  if (amount < 1) {
-    return (
-      <section className='cart'>
-        {/* cart header */}
-        <header>
-          <h2>your bag</h2>
-          <h4 className='empty-cart'>is currently empty</h4>
-        </header>
-      </section>
-    );
-  }
-  return (
-    <section className='cart'>
-      {/* cart header */}
-      <header>
-        <h2>your bag</h2>
-      </header>
-      {/* cart items */}
-      <div>
-        {cartItems.map((item) => {
-          return <CartItem key={item.id} {...item} />;
-        })}
-      </div>
-      {/* cart footer */}
-      <footer>
-        <hr />
-        <div className='cart-total'>
-          <h4>
-            total <span>${total}</span>
-          </h4>
-        </div>
-        <button className='btn clear-btn'>clear cart</button>
-      </footer>
-    </section>
-  );
-};
-
-export default CartContainer;
-```
-
-- CartItem.js
-
-```js
-import React from 'react';
-import { ChevronDown, ChevronUp } from '../icons';
-
-const CartItem = ({ id, img, title, price, amount }) => {
-  return (
-    <article className='cart-item'>
-      <img src={img} alt={title} />
-      <div>
-        <h4>{title}</h4>
-        <h4 className='item-price'>${price}</h4>
-        {/* remove button */}
-        <button className='remove-btn'>remove</button>
-      </div>
-      <div>
-        {/* increase amount */}
-        <button className='amount-btn'>
-          <ChevronUp />
-        </button>
-        {/* amount */}
-        <p className='amount'>{amount}</p>
-        {/* decrease amount */}
-        <button className='amount-btn'>
-          <ChevronDown />
-        </button>
-      </div>
-    </article>
-  );
-};
-
-export default CartItem;
 ```
 
 #### First Reducer
@@ -258,7 +165,7 @@ const actionCreator = (payload) => {
 };
 ```
 
-- CartContainer.js
+- components/CartContainer.jsx
 
 ```js
 import React from 'react';
@@ -285,7 +192,7 @@ export default CartContainer;
 
 #### Remove, Increase, Decrease
 
-- cartSlice.js
+- features/cartSlice.js
 
 ```js
 import { createSlice } from '@reduxjs/toolkit';
@@ -336,7 +243,7 @@ export const { clearCart, removeItem, increase, decrease, calculateTotals } =
 export default cartSlice.reducer;
 ```
 
-- CartItem.js
+- components/CartItem.js
 
 ```js
 import React from 'react';
@@ -397,7 +304,7 @@ const CartItem = ({ id, img, title, price, amount }) => {
 export default CartItem;
 ```
 
-- App.js
+- App.jsx
 
 ```js
 import { useEffect } from 'react';
