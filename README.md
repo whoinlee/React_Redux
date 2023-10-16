@@ -1,15 +1,19 @@
 # Redux Toolkit
 
 
-#### Docs
+#### Docs & Hero Icons
 
-[Redux Toolkit Docs](https://redux-toolkit.js.org/introduction/getting-started)
+- [Redux Toolkit Docs](https://redux-toolkit.js.org/introduction/getting-started)
+
+- [Hero Icons](https://heroicons.com/)
+
 
 #### Install Redux Toolkit
 
 ```sh
 npm install @reduxjs/toolkit react-redux
 ```
+
 
 #### Setup Store
 
@@ -64,8 +68,6 @@ const cartSlice = createSlice({
   initialState,
 });
 
-console.log(cartSlice);
-
 export default cartSlice.reducer;
 ```
 
@@ -91,7 +93,7 @@ import { CartIcon } from '../data/icons';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-  const { amount } = useSelector((state) => state.cart);
+  const { amount } = useSelector((store) => store.cart);
 
   return (
     <nav>
@@ -108,17 +110,6 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-```
-
-#### Hero Icons
-
-- [Hero Icons](https://heroicons.com/)
-
-```css
-nav svg {
-  width: 40px;
-  color: var(--clr-white);
-}
 ```
 
 #### Setup Cart

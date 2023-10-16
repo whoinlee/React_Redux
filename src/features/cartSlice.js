@@ -35,10 +35,10 @@ const initialState = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
-//   reducers: {
-//     clearCart: (state) => {
-//       state.cartItems = [];
-//     },
+  reducers: {
+    clearCart: (state) => {
+      state.cartItems = [];
+    },
 //     removeItem: (state, action) => {
 //       const itemId = action.payload;
 //       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
 //       state.amount = amount;
 //       state.total = total;
 //     },
-//   },
+  },
 //   extraReducers: (builder) => {
 //     // builder
 //     //   .addCase(getCartItems.pending, (state) => {
@@ -80,7 +80,9 @@ const cartSlice = createSlice({
 });
 
 console.log(cartSlice);
-// export const { clearCart, removeItem, increase, decrease, calculateTotals } =
-//   cartSlice.actions;
+
+export const { clearCart 
+  // , removeItem, increase, decrease, calculateTotals 
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
