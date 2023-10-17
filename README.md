@@ -129,8 +129,7 @@ const initialState = {
 
 #### First Reducer
 
-- cartSlice.js
-- Immer library
+- features/cartSlice.js
 
 ```js
 const cartSlice = createSlice({
@@ -144,16 +143,6 @@ const cartSlice = createSlice({
 });
 
 export const { clearCart } = cartSlice.actions;
-```
-
-- create action
-
-```js
-const ACTION_TYPE = 'ACTION_TYPE';
-
-const actionCreator = (payload) => {
-  return { type: ACTION_TYPE, payload: payload };
-};
 ```
 
 - components/CartContainer.jsx
@@ -187,7 +176,7 @@ export default CartContainer;
 
 ```js
 import { createSlice } from '@reduxjs/toolkit';
-import cartItems from '../../cartItems';
+import cartItems from '../data/cartItems';
 
 const initialState = {
   cartItems: [],
@@ -234,14 +223,14 @@ export const { clearCart, removeItem, increase, decrease, calculateTotals } =
 export default cartSlice.reducer;
 ```
 
-- components/CartItem.js
+- components/CartItem.jsx
 
 ```js
 import React from 'react';
-import { ChevronDown, ChevronUp } from '../icons';
+import { ChevronDown, ChevronUp } from '../data/icons';
 
 import { useDispatch } from 'react-redux';
-import { removeItem, increase, decrease } from '../features/cart/cartSlice';
+import { removeItem, increase, decrease } from '../features/cartSlice';
 
 const CartItem = ({ id, img, title, price, amount }) => {
   const dispatch = useDispatch();
@@ -302,7 +291,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import CartContainer from './components/CartContainer';
 import { useSelector, useDispatch } from 'react-redux';
-import { calculateTotals } from './features/cart/cartSlice';
+import { calculateTotals } from './features/cartSlice';
 
 function App() {
   const { cartItems } = useSelector((state) => state.cart);
@@ -320,145 +309,6 @@ function App() {
 }
 
 export default App;
-```
-
-#### Modal
-
-- create components/Modal.js
-
-```js
-const Modal = () => {
-  return (
-    <aside className='modal-container'>
-      <div className='modal'>
-        <h4>Remove all items from your shopping cart?</h4>
-        <div className='btn-container'>
-          <button type='button' className='btn confirm-btn'>
-            confirm
-          </button>
-          <button type='button' className='btn clear-btn'>
-            cancel
-          </button>
-        </div>
-      </div>
-    </aside>
-  );
-};
-export default Modal;
-```
-
-- App.js
-
-```js
-return (
-  <main>
-    <Modal />
-    <Navbar />
-    <CartContainer />
-  </main>
-);
-```
-
-#### modal slice
-
-- create features/modal/modalSlice.js
-
-```js
-import { createSlice } from '@reduxjs/toolkit';
-const initialState = {
-  isOpen: false,
-};
-
-const modalSlice = createSlice({
-  name: 'modal',
-  initialState,
-  reducers: {
-    openModal: (state, action) => {
-      state.isOpen = true;
-    },
-    closeModal: (state, action) => {
-      state.isOpen = false;
-    },
-  },
-});
-
-export const { openModal, closeModal } = modalSlice.actions;
-export default modalSlice.reducer;
-```
-
-- App.js
-
-```js
-const { isOpen } = useSelector((state) => state.modal);
-
-return (
-  <main>
-    {isOpen && <Modal />}
-    <Navbar />
-    <CartContainer />
-  </main>
-);
-```
-
-#### toggle modal
-
-- CartContainer.js
-
-```js
-import { openModal } from '../features/modal/modalSlice';
-
-return (
-  <button
-    className='btn clear-btn'
-    onClick={() => {
-      dispatch(openModal());
-    }}
-  >
-    clear cart
-  </button>
-);
-```
-
-- Modal.js
-
-```js
-import { closeModal } from '../features/modal/modalSlice';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../features/cart/cartSlice';
-
-const Modal = () => {
-  const dispatch = useDispatch();
-
-  return (
-    <aside className='modal-container'>
-      <div className='modal'>
-        <h4>Remove all items from your shopping cart?</h4>
-        <div className='btn-container'>
-          <button
-            type='button'
-            className='btn confirm-btn'
-            onClick={() => {
-              dispatch(clearCart());
-              dispatch(closeModal());
-            }}
-          >
-            confirm
-          </button>
-          <button
-            type='button'
-            className='btn clear-btn'
-            onClick={() => {
-              dispatch(closeModal());
-            }}
-          >
-            cancel
-          </button>
-        </div>
-      </div>
-    </aside>
-  );
-};
-export default Modal;
 ```
 
 #### async functionality with createAsyncThunk
