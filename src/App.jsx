@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './components/Navbar';
 import CartContainer from './components/CartContainer';
-import { useDispatch, useSelector } from 'react-redux';
+import Modal from './components/Modal';
 import { 
   calculateTotals, 
   // getCartItems 
@@ -9,6 +10,7 @@ import {
 
 function App() {
   const { cartItems, isLoading } = useSelector((store) => store.cart);
+  const { isOpen } = useSelector((store) => store.modal);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +26,7 @@ function App() {
         <h1>Loading...</h1>
       </div> :
       <main>
+        {isOpen && <Modal />}
         <Navbar />
         <CartContainer />
       </main>
