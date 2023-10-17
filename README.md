@@ -127,7 +127,7 @@ const initialState = {
 };
 ```
 
-#### First Reducer
+#### clearCart
 
 - features/cartSlice.js
 
@@ -170,7 +170,7 @@ const CartContainer = () => {
 export default CartContainer;
 ```
 
-#### Remove, Increase, Decrease
+#### remove, increase, decrease, and calculateTotals
 
 - features/cartSlice.js
 
