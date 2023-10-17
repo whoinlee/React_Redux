@@ -19,113 +19,24 @@ npm install @reduxjs/toolkit react-redux
 
 - store/index.js
 
-```js
-import { configureStore } from '@reduxjs/toolkit';
-
-export const store = configureStore({
-  reducer: {},
-});
-```
 
 #### Setup Provider
 
 - index.js
 
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './store';
-import { Provider } from 'react-redux';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-```
 
 #### Setup Cart Slice
 
 - features/cartSlice.js
-
-```js
-import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  cartItems: [],
-  amount: 0,
-  total: 0,
-  isLoading: true,
-};
-
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState,
-});
-
-export default cartSlice.reducer;
-```
-
 - store/index.js
 
-```js
-import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from '../features/cartSlice';
-
-export const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-  },
-});
-```
 
 #### Access store value
 
 - components/Navbar.jsx
+- components/CartContainer.jsx
+- App.js
 
-```js
-import { CartIcon } from '../data/icons';
-import { useSelector } from 'react-redux';
-
-const Navbar = () => {
-  const { amount } = useSelector((store) => store.cart);
-
-  return (
-    <nav>
-      <div className='nav-center'>
-        <h3>redux toolkit</h3>
-        <div className='nav-container'>
-          <CartIcon />
-          <div className='amount-container'>
-            <p className='total-amount'>{amount}</p>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-};
-export default Navbar;
-```
-
-#### Setup Cart Slice with local data, cartItems
-
-- features/cartSlice.js
-
-```js
-import cartItems from '../data/cartItems';
-
-const initialState = {
-  cartItems: cartItems,
-  amount: 0,
-  total: 0,
-  isLoading: true,
-};
-```
 
 #### Clear Cart
 
