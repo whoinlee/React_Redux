@@ -46,15 +46,9 @@ npm install @reduxjs/toolkit react-redux
 - [App.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/App.jsx)
 
 
-#### async functionality with createAsyncThunk
+#### Async Functionality with createAsyncThunk
 
-- [Course API](https://course-api.com/)
-- https://course-api.com/react-useReducer-cart-project
-- cartSlice.js
-
-- action type
-- callback function
-- lifecycle actions
+- [features/cartSlice.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/features/cartSlice.js)
 
 ```js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -86,7 +80,7 @@ const cartSlice = createSlice({
 });
 ```
 
-- App.js
+- [App.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/App.jsx)
 
 ```js
 import { calculateTotals, getCartItems } from './features/cart/cartSlice';

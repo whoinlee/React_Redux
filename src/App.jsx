@@ -5,7 +5,7 @@ import CartContainer from './components/CartContainer';
 import Modal from './components/Modal';
 import { 
   calculateTotals, 
-  // getCartItems 
+  getCartItems 
 } from './features/cartSlice';
 
 function App() {
@@ -17,6 +17,11 @@ function App() {
     dispatch(calculateTotals());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItems]);
+
+  useEffect(() => {
+    dispatch(getCartItems('random'));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
