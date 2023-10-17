@@ -4,7 +4,6 @@
 #### Docs & Hero Icons
 
 - [Redux Toolkit Docs](https://redux-toolkit.js.org/introduction/getting-started)
-
 - [Hero Icons](https://heroicons.com/)
 
 
@@ -15,40 +14,36 @@ npm install @reduxjs/toolkit react-redux
 ```
 
 
-#### Setup Store
+#### Setup Store & Provider
 
-- store/index.js
-
-
-#### Setup Provider
-
-- index.js
+- [store/index.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/store/index.js)
+- [index.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/index.js)
 
 
 #### Setup Cart Slice
 
-- features/cartSlice.js
-- store/index.js
+- [features/cartSlice.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/features/cartSlice.js)
+- [store/index.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/store/index.js)
 
 
-#### Access store value
+#### Access Store Value
 
-- components/Navbar.jsx
-- components/CartContainer.jsx
-- App.jsx
+- [components/Navbar.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/components/Navbar.jsx)
+- [components/CartContainer.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/components/CartContainer.jsx)
+- [App.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/App.jsx)
 
 
 #### Clear Cart
 
-- features/cartSlice.js
-- components/CartContainer.jsx
+- [features/cartSlice.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/features/cartSlice.js)
+- [components/CartContainer.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/components/CartContainer.jsx)
 
 
 #### Remove, Increase, Decrease, and Calculate Totals
 
-- features/cartSlice.js
-- components/CartItem.jsx
-- App.jsx
+- [features/cartSlice.js](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/features/cartSlice.js)
+- [components/CartItem.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/components/CartItem.jsx)
+- [App.jsx](https://github.com/whoinlee/React_ReduxToolkit/blob/main/src/App.jsx)
 
 
 #### async functionality with createAsyncThunk
