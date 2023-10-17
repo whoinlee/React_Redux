@@ -112,7 +112,7 @@ const Navbar = () => {
 export default Navbar;
 ```
 
-#### Setup Cart
+#### Setup Cart Slice with local data, cartItems
 
 - features/cartSlice.js
 
@@ -127,7 +127,7 @@ const initialState = {
 };
 ```
 
-#### clearCart
+#### Clear Cart
 
 - features/cartSlice.js
 
@@ -170,7 +170,7 @@ const CartContainer = () => {
 export default CartContainer;
 ```
 
-#### remove, increase, decrease, and calculateTotals
+#### Remove, Increase, Decrease, and Calculate Totals
 
 - features/cartSlice.js
 
